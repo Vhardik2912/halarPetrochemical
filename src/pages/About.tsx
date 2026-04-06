@@ -48,29 +48,29 @@ const About = () => {
 
   const milestones = [
     {
-      year: "2018",
-      title: "The Foundation",
-      desc: "VANTARA ENERGY was established with a vision to streamline energy trading in the Middle East."
-    },
-    {
       year: "2005",
-      title: "Global Expansion",
-      desc: "Expanded operations to over 20 countries, establishing key strategic storage hubs."
+      title: "The Foundation",
+      desc: "VANTARA ENERGY was established with a vision to revolutionize energy trading in the Middle East."
     },
     {
       year: "2012",
-      title: "Digital Integration",
-      desc: "Implemented AI-driven supply chain monitoring to ensure 100% logistics transparency."
+      title: "Global Expansion",
+      desc: "Expanded operations to over 20 countries, establishing key strategic storage hubs across global trade routes."
     },
     {
-      year: "2018",
+      year: "2017",
+      title: "Digital Integration",
+      desc: "Implemented advanced supply chain monitoring to ensure 100% logistics transparency and efficiency."
+    },
+    {
+      year: "2020",
       title: "Sustainability Pivot",
-      desc: "Launched our low-carbon initiative, focusing on ethical sourcing and waste reduction."
+      desc: "Launched our low-carbon initiative, focusing on ethical sourcing and operational waste reduction."
     },
     {
       year: "2024",
       title: "Industry Leader",
-      desc: "Now serving 50+ global ports with a commitment to reliability and innovation."
+      desc: "Now serving 50+ global ports with a commitment to reliability, innovation, and partnership."
     }
   ];
 
@@ -111,7 +111,7 @@ const About = () => {
                 transition={{ delay: 0.5, duration: 1 }}
                 className="absolute -top-8 sm:-top-12 left-0 sm:-left-12 text-accent font-serif italic text-lg sm:text-4xl opacity-30"
               >
-                since 2018
+                since 2005
               </motion.div>
 
               <h1 className="text-[2.6rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white leading-[1] sm:leading-[0.85] tracking-tighter uppercase text-left">

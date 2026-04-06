@@ -3,11 +3,8 @@ import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import logo from '@/assets/logo.png';
 
 const products = [
-  { name: 'Fuel Oil', href: '/products/fuel-oil' },
-  { name: 'Gas Oil', href: '/products/gas-oil' },
-  { name: 'Naphtha', href: '/products/naphtha' },
-  { name: 'White Spirit', href: '/products/white-spirit' },
-  { name: 'Glycols', href: '/products/glycols' },
+  { name: 'Oil & Gas', href: '/products/Oil' },
+  { name: 'Petrochemicals', href: '/products/Chemical' },
 ];
 
 const quickLinks = [
@@ -87,9 +84,9 @@ const Footer = () => {
                 </div>
                 <span className="text-foreground/70 font-medium">
                   1520, Burjuman Business Tower,<br />
-                  Business Mall, Dubai, UAE
+                  Burjuman, Dubai, UAE
                 </span>
-              </li>
+              </li> 
               <li>
                 <a
                   href="mailto:info@vantaraenergy.com"

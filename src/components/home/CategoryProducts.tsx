@@ -16,7 +16,6 @@ import petrochemicalsImg from "@/assets/products/categories/petrochemicals.png";
 import solventsImg from "@/assets/products/categories/solvents.png";
 import rawMaterialsImg from "@/assets/products/categories/raw_materials.png";
 import waterTreatmentImg from "@/assets/products/categories/water_treatment.png";
-import foodIndustryImg from "@/assets/products/categories/food_industry.png";
 import cosmeticsImg from "@/assets/products/categories/cosmetics.png";
 import paintCoatingsImg from "@/assets/products/categories/paint_coatings.png";
 import miningImg from "@/assets/products/categories/mining.png";
@@ -29,7 +28,6 @@ const categoryImageMap: Record<string, string> = {
     "Solvents": solventsImg,
     "Detergent & Chemical Raw Materials": rawMaterialsImg,
     "Water Treatment Chemicals": waterTreatmentImg,
-    "Food Industry Chemicals": foodIndustryImg,
     "Cosmetics & Personal Care Chemicals": cosmeticsImg,
     "Paint & Coatings Chemicals": paintCoatingsImg,
     "Mining Industry Chemicals": miningImg,

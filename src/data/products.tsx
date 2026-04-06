@@ -8,11 +8,9 @@ import {
     Leaf,
     Factory,
     Layers,
-    Utensils,
     Zap,
     Box,
     Waves,
-    Grape,
     Wind,
     Pipette,
     Paintbrush,
@@ -43,7 +41,6 @@ import Ethylacetate from "@/assets/products/categories/Ethylacetate.jpg";
 import rawMaterialsImg from "@/assets/products/categories/raw_materials.png";
 import AluminumSulphate from "@/assets/products/categories/AluminumSulphate.png"
 import waterTreatmentImg from "@/assets/products/categories/water_treatment.png";
-import foodIndustryImg from "@/assets/products/categories/food_industry.png";
 import cosmeticsImg from "@/assets/products/categories/cosmetics.png";
 import Glycerine from "@/assets/products/categories/Glycerine.jpg"
 import paintCoatingsImg from "@/assets/products/categories/paint_coatings.png";
@@ -51,7 +48,6 @@ import miningImg from "@/assets/products/categories/mining.png";
 import textileImg from "@/assets/products/categories/textile.png";
 import foamIndustryImg from "@/assets/products/categories/foam_industry.png";
 import printingInkImg from "@/assets/products/categories/printing_ink.png";
-import CitricAcid from "@/assets/products/categories/CitricAcidFoodIndustryChemicals.jpg";
 import TitaniumDioxide from "@/assets/products/categories/TitaniumDioxide.png"
 import SodiumCyanide from "@/assets/products/categories/SodiumCyanide.png"
 import HydrogenPeroxide from "@/assets/products/categories/HydrogenPeroxide.png"
@@ -59,8 +55,6 @@ import TDI from "@/assets/products/categories/TDI.jpg"
 import IsopropylAlcohol from "@/assets/products/categories/IsopropylAlcohol.png"
 import FerricChloride from "@/assets/products/categories/FerricChloride.png"
 import CalciumHypochlorite from "@/assets/products/categories/CalciumHypochlorite.png"
-import SodiumBenzoate from "@/assets/products/categories/SodiumBenzoate.png"
-import PotassiumSorbate from "@/assets/products/categories/PotassiumSorbate.png"
 import StearicAcid from "@/assets/products/categories/StearicAcid.png"
 import ActivatedCarbon from "@/assets/products/categories/ActivatedCarbon.png"
 import HydrochloricAcid from "@/assets/products/categories/HydrochloricAcid.png"
@@ -80,8 +74,6 @@ import glycolsImg from "@/assets/products/glycols.png";
 import butylGlycolGenerated from "@/assets/products/generated/butyl_glycol_egbe.png";
 import sodiumHypochloriteGenerated from "@/assets/products/generated/sodium_hypochlorite.png";
 import pacGenerated from "@/assets/products/generated/polyaluminium_chloride_pac.png";
-import aceticAcidFoodGenerated from "@/assets/products/generated/acetic_acid_food.png";
-import calciumCarbonateFoodGenerated from "@/assets/products/generated/calcium_carbonate_food.png";
 import propyleneGlycolCosmeticGenerated from "@/assets/products/generated/propylene_glycol_cosmetic.png";
 import calciumCarbonateIndustrialGenerated from "@/assets/products/generated/calcium_carbonate_industrial.png";
 import zincOxideGenerated from "@/assets/products/generated/zinc_oxide.png";
@@ -381,21 +373,21 @@ export const products: Product[] = [
         slug: 'white-oil',
         category: 'Petrochemicals',
         fullDescription: 'White oils are highly refined mineral oils that are extremely pure, stable, colorless, odorless, and chemically inert. Our pharmaceutical and technical grade white oils meet the most stringent purity requirements.',
-        uses: ['Pharmaceuticals', 'Cosmetics', 'Food processing', 'Plastics lubrication'],
+        uses: ['Pharmaceuticals', 'Cosmetics', 'Plastics lubrication'],
         features: [
-            'Food grade available (USP/NF)',
+            'High purity mineral oil (USP/NF)',
             'Completely odorless and tasteless',
             'Excellent oxidation stability',
-            'FDA compliant grades'
+            'REACH and FDA compliant grades'
         ],
         specifications: {
             purity: '99.9% min',
             packaging: 'Bulk, IBCs, Drums',
             casNumber: '8042-47-5'
         },
-        certifications: ['USP', 'NF', 'EP', 'JP', 'FDA 21 CFR 172.878'],
-        industries: ['Pharmaceutical', 'Cosmetics', 'Food & Beverage', 'Medical Devices'],
-        handling: 'Store in clean, dry conditions. Protect from extreme temperatures. Use food-grade handling equipment for food applications.'
+        certifications: ['USP', 'NF', 'EP', 'JP'],
+        industries: ['Pharmaceutical', 'Cosmetics', 'Medical Devices'],
+        handling: 'Store in clean, dry conditions. Protect from extreme temperatures.'
     },
     {
         name: 'White Spirit',
@@ -1403,115 +1395,6 @@ export const products: Product[] = [
         handling: 'Store in corrosion-resistant containers in a cool, dry place. Avoid contact with skin and eyes. Use appropriate PPE.'
     },
 
-    // Food Industry Chemicals
-    {
-        name: 'Glycerine (USP Grade)',
-        description: 'High-purity USP grade glycerine suitable for food, pharmaceutical, and personal care formulations.',
-        href: '/products/glycerine',
-        backgroundImage: Glycerine,
-        icon: <Utensils className="w-6 h-6" />,
-        slug: 'glycerine',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'glycerine',
-        msdsPdfKey: 'GLYCERINE MSDS & TDS.pdf',
-        fullDescription: 'Glycerine (also known as glycerol) is a clear, colorless, odorless, and viscous liquid with excellent hygroscopic and humectant properties. Our USP Grade Glycerine complies with United States Pharmacopeia standards and is widely used in food, pharmaceutical, and personal care applications for moisture retention, texture enhancement, and product stability.',
-        uses: ['Food additive and humectant', 'Cosmetic and personal care products', 'Pharmaceutical formulations', 'Oral care products'],
-        features: ['USP-compliant pharmaceutical grade', 'High purity and clarity', 'Excellent moisturizing properties', 'Safe for food contact'],
-        specifications: { purity: '≥ 99.7%', packaging: 'Drums, IBCs, Bulk', casNumber: '56-81-5', formula: 'C3H8O3' },
-        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
-        handling: 'Store in tightly closed containers in a cool, dry place. Glycerine is hygroscopic.'
-    },
-
-    {
-        name: 'Sodium Benzoate',
-        description: 'Premium food-grade preservative for beverages and acidic foods.',
-        href: '/products/sodium-benzoate',
-        backgroundImage: SodiumBenzoate,
-        icon: <Utensils className="w-6 h-6" />,
-        slug: 'sodium-benzoate',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'sodium-benzoate',
-        msdsPdfKey: 'Sodium Benzoate COA.pdf',
-        fullDescription: 'Sodium Benzoate is a common food preservative that inhibits the growth of potentially harmful bacteria, mold, and other microbes in food, particularly in acidic environments.',
-        uses: ['Carbonated drinks', 'Fruit juices', 'Salad dressings', 'Condiments'],
-        features: ['Effective antimicrobial agent', 'High water solubility', 'Safe for human consumption (GRAS)'],
-        specifications: { purity: '≥ 99%', casNumber: '532-32-1', formula: 'C7H5NaO2' },
-        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
-        handling: 'Store in a cool, dry place. Keep containers tightly closed.'
-    },
-
-    {
-        name: 'Potassium Sorbate',
-        description: 'Versatile food-grade mold and yeast inhibitor.',
-        href: '/products/potassium-sorbate',
-        backgroundImage: PotassiumSorbate,
-        icon: <Utensils className="w-6 h-6" />,
-        slug: 'potassium-sorbate',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'potassium-sorbate',
-        msdsPdfKey: 'Potassium Sorbate COA.pdf',
-        fullDescription: 'Potassium Sorbate is a white salt used as a food preservative to prevent the growth of molds and yeasts in many foods, such as cheese, wine, yogurt, and dried meats.',
-        uses: ['Bakery products', 'Dairy products', 'Wine making', 'Personal care products'],
-        features: ['Wide spectrum activity', 'Does not affect flavor or aroma', 'High stability'],
-        specifications: { purity: '≥ 99%', casNumber: '24634-61-5', formula: 'C6H7KO2' },
-        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
-        handling: 'Hygroscopic. Protect from moisture and light.'
-    },
-
-    {
-        name: 'Acetic Acid',
-        description: 'High-purity organic acid used in food, pharmaceutical, and industrial applications.',
-        href: '/products/acetic-acid',
-        backgroundImage: aceticAcidFoodGenerated,
-        icon: <Droplets className="w-6 h-6" />,
-        slug: 'acetic-acid',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'acetic-acid',
-        msdsPdfKey: 'Acetic Acid MSDS.pdf',
-        fullDescription: 'Acetic Acid is a clear, colorless organic acid with a pungent odor and is the principal component of vinegar. It is supplied in food-grade, pharmaceutical-grade, and technical-grade forms.',
-        uses: ['Vinegar production', 'Food acidulant', 'Acidity regulation', 'Chemical synthesis'],
-        features: ['High purity food and pharma grades', 'Glacial and diluted concentrations', 'Consistent quality'],
-        specifications: { purity: '99.8% min (Glacial)', casNumber: '64-19-7', formula: 'CH3COOH' },
-        industries: ['Food Industry', 'Chemical Manufacturing', 'Pharmaceuticals'],
-        handling: 'Highly corrosive. Store in dedicated containers in a well-ventilated area.'
-    },
-
-    {
-        name: 'Citric Acid (Monohydrate & Anhydrous)',
-        description: 'Food-grade organic acid used for acidity regulation, preservation, and flavor enhancement.',
-        href: '/products/citric-acid',
-        backgroundImage: CitricAcid,
-        icon: <Grape className="w-6 h-6" />,
-        slug: 'citric-acid',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'citric-acid-monohydrate',
-        msdsPdfKey: 'CITRIC ACID MONOHYDRATE  COA.pdf',
-        fullDescription: 'Citric Acid is a naturally occurring weak organic acid used in the food and beverage industry as an acidulant, preservative, and flavor enhancer. Available in anhydrous and monohydrate forms.',
-        uses: ['Food preservative and acidulant', 'Flavor enhancement', 'pH regulation', 'Chelating agent'],
-        features: ['High food-grade purity', 'Natural fermentation-derived', 'Anhydrous and monohydrate grades'],
-        specifications: { purity: '99.5% min', casNumber: '77-92-9', formula: 'C6H8O7' },
-        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
-        handling: 'Store in a cool, dry place. Avoid contamination.'
-    },
-
-    {
-        name: 'Calcium Carbonate (Food Grade)',
-        description: 'High-purity food-grade calcium supplement and acid regulator.',
-        href: '/products/calcium-carbonate',
-        backgroundImage: calciumCarbonateFoodGenerated,
-        icon: <Box className="w-6 h-6" />,
-        slug: 'calcium-carbonate',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'calcium-carbonate-food-grade',
-        msdsPdfKey: 'Calcium Carbonate COA.pdf',
-        fullDescription: 'Calcium Carbonate (CaCO3) is a white, odorless powder widely used in the food industry as a calcium supplement, firming agent, and acidity regulator. Our food-grade Calcium Carbonate ensures high purity and compliance with strict food safety standards.',
-        uses: ['Food fortification (Calcium supplement)', 'Acidity regulation in beverages', 'Firming agent in canned products', 'Bakery and confectionery additive'],
-        features: ['High elemental calcium content', 'Fine particle size for better dispersion', 'Strict food-grade purity compliance', 'Odorless and tasteless'],
-        specifications: { purity: '≥ 98%', casNumber: '471-34-1', formula: 'CaCO3' },
-        industries: ['Food & Beverage', 'Pharmaceuticals', 'Dietary Supplements'],
-        handling: 'Store in a cool, dry area. Avoid dust generation. Keep containers tightly closed.'
-    },
-
     // Cosmetics & Personal Care Chemicals
     {
         name: 'Glycerine (USP Grade)',
@@ -1545,11 +1428,10 @@ export const products: Product[] = [
         uses: [
             'Humectant for moisture retention',
             'Solvent for active ingredients and fragrances',
-            'Carrier in pharmaceutical syrups',
-            'Food additive (E1520)'
+            'Carrier in pharmaceutical syrups'
         ],
         features: [
-            'Available in USP, EP, and Food Grade',
+            'Available in USP and EP Grade',
             'Excellent hygroscopic and solvent properties',
             'Chemically stable and low volatility',
             'Low toxicity and skin-compatible'
@@ -1560,8 +1442,8 @@ export const products: Product[] = [
             casNumber: '57-55-6',
             formula: 'C3H8O2'
         },
-        certifications: ['USP', 'EP', 'FCC', 'Kosher', 'Halal'],
-        industries: ['Cosmetics & Personal Care', 'Pharmaceuticals', 'Food & Beverage'],
+        certifications: ['USP', 'EP'],
+        industries: ['Cosmetics & Personal Care', 'Pharmaceuticals'],
         handling: 'Store in tightly closed containers in a cool, dry place. Avoid contamination with moisture.'
     },
 
@@ -2029,7 +1911,7 @@ export const products: Product[] = [
         uses: ['Flexographic and gravure ink solvent', 'Solvent for laminating adhesives', 'Aluminum foil and film coatings', 'Extraction solvent'],
         features: ['Rapid evaporation enables high productivity', 'Excellent solvency for various resins', 'Mild fruity odor', 'Readily biodegradable'],
         specifications: { purity: '99.8% min', packaging: 'Drums, IBCs, Bulk', casNumber: '141-78-6', formula: 'C4H8O2' },
-        industries: ['Printing & Packaging', 'Food Packaging', 'Laminates'],
+        industries: ['Printing & Packaging', 'Laminates'],
         handling: 'Highly flammable. Use in well-ventilated areas with appropriate PPE.'
     },
 
@@ -2038,7 +1920,7 @@ export const products: Product[] = [
         description: 'Comprehensive range of binding resins and high-quality organic/inorganic pigments for ink applications.',
         href: '/products/printing-resins',
         backgroundImage: printingResinsPigmentsGenerated,
-        icon: <Grape className="w-6 h-6" />,
+        icon: <Paintbrush className="w-6 h-6" />,
         slug: 'resins-pigments',
         category: 'Printing Ink Chemicals',
         chemicalId: 'resins-pigments-ink',

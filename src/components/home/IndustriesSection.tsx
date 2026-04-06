@@ -6,7 +6,6 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 
 // Local asset imports
 import videoPetrochemicals from "@/assets/products/generated/pertollium.mp4";
-import videoFood from "@/assets/products/generated/foodindustry.mp4";
 import solventsvideo from "@/assets/products/generated/Solvents.mp4";
 import waterchem from "@/assets/products/generated/watermark.mp4";
 import miningchem from "@/assets/products/generated/minigind.mp4";
@@ -46,13 +45,6 @@ const slides = [
         description: "Industrial-scale purification and coagulation agents for municipal and industrial water systems.",
         specs: ["Fast Coagulation", "High Purity", "NSF/ANSI 60"],
         metric: "Fluid Tech"
-    },
-    {
-        name: "Food Industry Chemicals",
-        video: videoFood,
-        description: "Food-grade preservatives, acidulants, and stabilizers ensuring safety and quality.",
-        specs: ["USP/FCC Grade", "Kosher/Halal", "Elite Purity"],
-        metric: "Human Grade"
     },
     {
         name: "Cosmetics & Personal Care Chemicals",
@@ -260,7 +252,6 @@ const IndustriesSection = () => {
                                                                         "Solvents": ["Solvent", "Glycol", "Acetate", "Ketone", "Toluene", "Xylene", "Acetone", "TDI"],
                                                                         "Detergent & Chemical Raw Materials": ["Detergent", "LABSA", "SLES", "Soda", "Sulphate", "Nitrate", "Silicate", "Titanium Dioxide"],
                                                                         "Water Treatment Chemicals": ["Water", "Treatment", "Sulphate", "Chloride", "PAC", "Hypochlorite"],
-                                                                        "Food Industry Chemicals": ["Food", "Citric", "Acetic", "Benzoate", "Sorbate", "Carbonate", "Glycerine"],
                                                                         "Cosmetics & Personal Care Chemicals": ["Cosmetic", "Personal Care", "Glycerine", "Propylene", "Stearic"],
                                                                         "Paint & Coatings Chemicals": ["Paint", "Coating", "Titanium Dioxide", "Carbonate", "Zinc", "Acetate", "Xylene", "MEK", "Naphtha"],
                                                                         "Mining Industry Chemicals": ["Mining", "Cyanide", "Carbon", "Hydrochloric", "Sulphuric", "Silicate"],

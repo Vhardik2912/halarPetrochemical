@@ -56,6 +56,7 @@ export interface ChemicalProduct {
   };
   brandNames?: string[];
   origin?: string;
+  remarks?: string;
 }
 
 /**
@@ -107,7 +108,6 @@ export const chemicalCatalog: ChemicalProduct[] = [
       "Production of acetic anhydride and ester",
       "Solvent for recrystallization to purify organic compounds",
       "Fabric dyeing, production of nylon and leather tanning",
-      "Food canning as an additive or flavoring and in medicines (vinegar contains about 6%)",
       "Herbicide for broadleaf weeds and weed grasses"
     ],
     packaging: ["Tanks", "Drums"],
@@ -231,8 +231,7 @@ export const chemicalCatalog: ChemicalProduct[] = [
       "Pharmaceutical solvent or extraction agent",
       "Cosmetic products and fragrance solvent in perfumes",
       "Anti-corrosive agent",
-      "Cleaning and car care products",
-      "Synthetic fruit flouring industry"
+      "Cleaning and car care products"
     ],
     packaging: ["Tanks", "Drums"],
     // Sources: [17-19]
@@ -258,95 +257,6 @@ export const chemicalCatalog: ChemicalProduct[] = [
       expDate: "February, 2030"
     },
     // Source: [20]
-  },
-  {
-    id: "citric-acid-monohydrate",
-    productName: "Citric acid monohydrate",
-    brandNames: ["TTCA", "WERFANG"],
-    identifiers: {
-      casNumber: "5949-29-1",
-      chemicalFormula: "C6H8O7.H2O"
-    },
-    details: {
-      appearance: "White or almost white, crystalline powder, colourless crystals or granules",
-      odor: "Odorless",
-      solubility: "Very soluble in water, freely soluble in ethanol, sparingly soluble in ether",
-      introduction: "Organic acid found naturally in citrus fruits; key intermediate in metabolism (Krebs cycle). Efflorescent in dry air, non-toxic, and fully biodegradable."
-    },
-    specifications: [
-      { parameter: "Identification", requirement: "Pass", result: "Pass" },
-      { parameter: "Appearance of Solution", requirement: "Pass", result: "Pass" },
-      { parameter: "Assay", requirement: "Not Specified", result: "99.9 %" },
-      { parameter: "Water", requirement: "Not Specified", result: "8.6 %" },
-      { parameter: "Readily Carbonisable Substances", requirement: "Pass Test", result: "Pass Test" },
-      { parameter: "Sulphated Ash (Residue on ignition)", requirement: "Not Specified", result: "0.02 %" },
-      { parameter: "Sulfate", requirement: "< 150 mg/kg", result: "< 150 mg/kg" },
-      { parameter: "Oxalate", requirement: "≤ 100 mg/kg", result: "≤ 100 mg/kg" },
-      { parameter: "Lead", requirement: "≤ 0.5 mg/kg", result: "≤ 0.5 mg/kg" },
-      { parameter: "Arsenic", requirement: "≤ 1 mg/kg", result: "≤ 1 mg/kg" },
-      { parameter: "Mercury", requirement: "≤ 1 mg/kg", result: "≤ 1 mg/kg" },
-      { parameter: "Aluminum", requirement: "≤ 0.2 mg/kg", result: "≤ 0.2 mg/kg" },
-      { parameter: "Heavy Metals", requirement: "≤ 10 mg/kg", result: "≤ 10 mg/kg" },
-      { parameter: "Bacterial Endotoxins", requirement: "< 0.5 IU/mg", result: "< 0.5 IU/mg" }
-    ],
-    applications: [
-      "Acidity regulator in processed fruit and vegetable",
-      "Baking powder component",
-      "Preservative in canned food",
-      "Thrombin inhibitor in anticoagulant",
-      "Fungicide in Pharmaceutical",
-      "Exfoliating agent and antioxidant in Cosmetics",
-      "Scale remover in plumbing cleaning",
-      "Anti crease agent in textiles",
-      "Additive in plastic manufacturing",
-      "Concrete retardant in construction"
-    ],
-    packaging: ["25kg bag"],
-    // Sources: [21-25]
-  },
-  {
-    id: "calcium-carbonate",
-    productName: "Calcium Carbonate (ACS, Anhydrous)",
-    brandNames: ["ChemPure"],
-    origin: "India",
-    identifiers: {
-      casNumber: "471-34-1",
-      chemicalFormula: "CaCO3",
-      molecularWeight: "100.09",
-      productCode: "CP-B0149D",
-      batchNumber: "IB1814131",
-      ecNumber: "207-439-9",
-      mdlNumber: "MFCD00010906",
-      beilsteinRegistryNo: "8008338"
-    },
-    details: {
-      appearance: "White Powder, free-flowing",
-      solubility: "Insoluble in H2O",
-      density: "2.93 g/ml@25oC"
-    },
-    specifications: [
-      { parameter: "Insoluble in dilute HCl", requirement: "0.01% MAX", result: "0.006 %" },
-      { parameter: "Fluoride (F)", requirement: "0.0015% MAX", result: "<0.0015%" },
-      { parameter: "Heavy Metals (as Pb)", requirement: "0.001% MAX", result: "<0.001%" },
-      { parameter: "Identification", requirement: "To Pass Test", result: "Passes Test" },
-      { parameter: "Iron (Fe)", requirement: "0.003% MAX", result: "<0.003%" },
-      { parameter: "Sulfate (SO4)", requirement: "0.01% MAX", result: "<0.01%" },
-      { parameter: "Magnesium (Mg)", requirement: "0.02% MAX", result: "0.0056%" },
-      { parameter: "Ammonium (NH4)", requirement: "0.003% MAX", result: "<0.003%" },
-      { parameter: "Potassium (K)", requirement: "0.01% MAX", result: "0.0028%" },
-      { parameter: "Sodium (Na)", requirement: "0.1% MAX", result: "0.0495%" },
-      { parameter: "Assay (CaCO3) dried basis", requirement: "99.0% MIN", result: "99.89%" },
-      { parameter: "Barium (Ba)", requirement: "0.005% MAX", result: "0.0040%" },
-      { parameter: "Chloride (Cl)", requirement: "0.001% MAX", result: "<0.001%" },
-      { parameter: "Strontium (Sr)", requirement: "0.1% MAX", result: "0.0018%" }
-    ],
-    applications: [],
-    packaging: [],
-    dates: {
-      mfgDate: "08/14/2018",
-      retestDate: "08/13/2023"
-    },
-    // Sources: [26-28]
   },
   {
     id: "caustic-soda-flakes",
@@ -500,11 +410,7 @@ export const chemicalCatalogPart2: ChemicalProduct[] = [
       { parameter: "Total Impurity", requirement: "< 1", result: "< 1", uom: "%" }
     ],
     applications: [
-      "Food, pharmaceutical, medical and personal care industries",
       "Industrial and scientific uses",
-      "Humectant, solvent, and artificial sweetener in foods and beverages",
-      "Filler in commercially prepared low-fat foods",
-      "Thickening agent in liqueurs",
       "Improving smoothness and providing lubrication in pharmaceuticals",
       "Found in allergen immunotherapies, cough syrups, elixirs and expectorants",
       "Toothpaste, mouthwashes, skin care products, shaving cream, hair care products, glycerin soaps",
@@ -770,9 +676,10 @@ export const chemicalCatalogPart3: ChemicalProduct[] = [
   {
     id: "propylene-glycol-usp-technical",
     productName: "Propylene Glycol USP (Technical Profile)",
-    identifiers: {},
+    identifiers: {
+      chemicalFormula: "C3H8O2"
+    },
     details: {
-      chemicalFormula: "C3H8O2",
       appearance: "Clear",
       introduction: "Propylene Glycol is a propanediol. It is colourless, viscous, hygroscopic, low-melting and high-boiling liquid with low toxicity. It is used as a solvent, emulsifying agent, and antifreeze."
     },
@@ -797,39 +704,10 @@ export const chemicalCatalogPart3: ChemicalProduct[] = [
       "Emulsifier in cosmetics and pharmaceuticals",
       "Solvent in elixirs and other liquid medications",
       "Coupling agent in sunscreens, lotions, shampoos, shaving creams",
-      "Humectant, preservative and stabilizer in pet food, bakery goods, salad dressings",
       "Plasticizer for hair sprays, hand sanitizers and moisturizing creams"
     ],
     packaging: ["Drums"],
     // Sources: [7], [8], [9]
-  },
-  {
-    id: "potassium-sorbate",
-    productName: "Potassium Sorbate",
-    identifiers: {
-      casNumber: "24634-61-5",
-      inciName: "Potassium Sorbate"
-    },
-    details: {
-      appearance: "White powder"
-    },
-    specifications: [
-      { parameter: "Appearance", requirement: "White powder", result: "Pass" },
-      { parameter: "Identification A & B", requirement: "Passes Test", result: "Pass" },
-      { parameter: "Assay (C6H7KO2), % on dry basis", requirement: "98.0 - 101.0%", result: "99.5%" },
-      { parameter: "Alkalinity", requirement: "Passes Test (~1%)", result: "Pass" },
-      { parameter: "Acidity (as Sorbic Acid)", requirement: "Passes Test (~1%)", result: "Pass" },
-      { parameter: "Loss on Drying", requirement: "1.0% MAX", result: "0.2%" },
-      { parameter: "Heavy Metals", requirement: "10 ppm MAX", result: "Pass" },
-      { parameter: "Lead, Pb", requirement: "2 ppm MAX", result: "Pass" },
-      { parameter: "Arsenic (as As)", requirement: "3 ppm MAX", result: "Pass" }
-    ],
-    applications: [
-      "Certified in compliance with US-Canada Organic Equivalency Arrangement."
-    ],
-    packaging: [],
-    dates: { expDate: "24 months from production date" },
-    // Sources: [10], [11], [12]
   },
   {
     id: "propylene-glycol-mc-coa",
@@ -956,37 +834,6 @@ export const chemicalCatalogPart3: ChemicalProduct[] = [
     // Sources: [21], [22]
   },
   {
-    id: "sodium-benzoate-srl",
-    productName: "Sodium Benzoate",
-    identifiers: {
-      chemicalFormula: "C7H5O2Na",
-      molecularWeight: "144.11",
-      productCode: "1986808 (Ref)"
-    },
-    details: {
-      appearance: "White Crystalline powder",
-      solubility: "Clear and Colourless in 10% aq. solution"
-    },
-    specifications: [
-      { parameter: "Appearance (Colour)", requirement: "White", result: "White" },
-      { parameter: "Appearance (Form)", requirement: "Crystalline powder", result: "Crystalline powder" },
-      { parameter: "Solubility (Turbidity) 10% aq. solution", requirement: "Clear", result: "Clear" },
-      { parameter: "Solubility (Colour) 10% aq. solution", requirement: "Colourless", result: "Colourless" },
-      { parameter: "Assay", requirement: "min. 99%", result: "99.4%" },
-      { parameter: "Loss on drying", requirement: "max. 1%", result: "0.2 %" },
-      { parameter: "Chloride (CI)", requirement: "max. 0.01%", result: "Passes" },
-      { parameter: "Sulphate (SO4)", requirement: "max. 0.02%", result: "Passes" },
-      { parameter: "Heavy Metals (Pb)", requirement: "max. 0.001%", result: "Passes" }
-    ],
-    applications: [],
-    packaging: [],
-    dates: {
-      mfgDate: "July 2021",
-      expDate: "July 2026"
-    },
-    // Sources: [23], [24]
-  },
-  {
     id: "sodium-nitrate-coated",
     productName: "Sodium Nitrate (Coated Grade)",
     identifiers: {},
@@ -1008,76 +855,6 @@ export const chemicalCatalogPart3: ChemicalProduct[] = [
     // Sources: [25]
   }
 ];
-
-/**
- * Detailed Chemical Product Interface (Final)
- */
-export interface ChemicalSpecification {
-  parameter: string;
-  requirement: string;
-  result: string;
-  uom?: string;
-}
-
-export interface ChemicalProduct {
-  id: string;
-  productName: string;
-  identifiers: {
-    casNumber?: string;
-    chemicalFormula?: string;
-    molecularWeight?: string;
-    productCode?: string;
-    batchNumber?: string;
-    ecNumber?: string;
-    mdlNumber?: string;
-    beilsteinRegistryNo?: string;
-    hsnCode?: string;
-    inciName?: string;
-    dangerousGoodsNumber?: string;
-    dangerousGoodsNumber?: string;
-  };
-  details: {
-    appearance?: string;
-    odor?: string;
-    solubility?: string;
-    density?: string;
-    meltingPoint?: string;
-    boilingPoint?: string;
-    purity?: string;
-    introduction?: string;
-    steamPressure?: string;
-    relativeMolecularMass?: string;
-    steamPressure?: string;
-    relativeMolecularMass?: string;
-  };
-  specifications: ChemicalSpecification[];
-  applications: string[];
-  packaging: string[];
-  dates?: {
-    mfgDate?: string;
-    expDate?: string;
-    retestDate?: string;
-    samplingDate?: string;
-    samplingDate?: string;
-  };
-  safetyInfo?: {
-    hazards?: string[];
-    symptoms?: Record<string, string>;
-    firstAid?: Record<string, string>;
-    symptoms?: Record<string, string>;
-    preventiveMeasures?: Record<string, string>;
-    fireExtinguisher?: string;
-    spillage?: string;
-    storageInfo?: string;
-    preventiveMeasures?: Record<string, string>;
-    fireExtinguisher?: string;
-    spillage?: string;
-    storageInfo?: string;
-  };
-  brandNames?: string[];
-  origin?: string;
-  remarks?: string;
-}
 
 export const chemicalCatalogPart4: ChemicalProduct[] = [
   {

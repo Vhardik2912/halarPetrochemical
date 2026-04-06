@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: <MapPin className="w-6 h-6" />,
     title: 'Address',
-    details: ['1520,Burjuman Business Tower,Business Mall'],
+    details: ['1520,Burjuman Business Tower,Burjuman, Dubai, UAE'],
   },
   {
     icon: <Mail className="w-6 h-6" />,
@@ -44,9 +44,9 @@ const contactInfo = [
   {
     icon: <Clock className="w-6 h-6" />,
     title: 'Business Hours',
-    details: ['Sunday - Thursday: 9:00 AM - 6:00 PM', 'Friday - Saturday: Closed'],
+    details: ['Monday - Saturday: 9:00 AM - 6:00 PM', 'Sunday: Closed'],
   },
-];
+];  
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);

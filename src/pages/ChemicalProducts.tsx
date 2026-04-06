@@ -11,8 +11,7 @@ import { ArrowRight, Beaker, Layers, ShieldCheck } from 'lucide-react';
 
 const ChemicalProducts = () => {
     const chemicalProducts = products.filter(p => 
-        p.category !== 'Petrochemicals' && 
-        p.category !== 'Food Industry Chemicals'
+        p.category !== 'Petrochemicals'
     );
 
     // Group products by category
