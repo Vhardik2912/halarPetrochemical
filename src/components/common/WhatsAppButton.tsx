@@ -1,7 +1,7 @@
 import whatsappIcon from '@/assets/whatsappicon.svg';
 
 const WhatsAppButton = () => {
-  const whatsappNumber = '971000000000'; // Replace with your WhatsApp number
+  const whatsappNumber = '+971551623344'; // Replace with your WhatsApp number
   const whatsappURL = `https://wa.me/${whatsappNumber}?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20products.`;
 
   return (
