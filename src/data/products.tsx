@@ -86,6 +86,8 @@ import aceticAcidTextileGenerated from "@/assets/products/generated/acetic_acid_
 import mekPaintGenerated from "@/assets/products/generated/mek_paint.png";
 import mekInkGenerated from "@/assets/products/generated/mek_ink.png";
 import tolueneInkGenerated from "@/assets/products/generated/toluene_ink.png";
+import sodaAshGenerated from "@/assets/products/generated/soda_ash.png";
+import sodiumHydrosulphiteGenerated from "@/assets/products/generated/sodium_hydrosulphite.png";
 
 // import lubricantOilImg from "@/assets/products/lubricant-oil.png";
 // import paraffinOilImg from "@/assets/products/Paraffin Oil.png";
@@ -1098,7 +1100,7 @@ export const products: Product[] = [
         name: 'Soda Ash Light',
         description: 'Light-density sodium carbonate used in glass, detergents, and chemical processing.',
         href: '/products/soda-ash-light',
-        backgroundImage: sodaashlight,
+        backgroundImage: sodaAshGenerated,
         icon: <Layers className="w-6 h-6" />,
         slug: 'soda-ash-light',
         category: 'Detergent & Chemical Raw Materials',
@@ -1706,7 +1708,7 @@ export const products: Product[] = [
         name: 'Sodium Hydrosulphite',
         description: 'Powerful reducing agent used primarily in textile vat dyeing, indigo reduction, and industrial bleaching.',
         href: '/products/sodium-hydrosulphite',
-        backgroundImage: textileImg,
+        backgroundImage: sodiumHydrosulphiteGenerated,
         icon: <Beaker className="w-6 h-6" />,
         slug: 'sodium-hydrosulphite',
         category: 'Textile Industry Chemicals',
@@ -1742,7 +1744,7 @@ export const products: Product[] = [
         name: 'Soda Ash',
         description: 'Sodium Carbonate used as a pH regulator and reactive dye fixative in textile processing.',
         href: '/products/soda-ash',
-        backgroundImage: sodaashlight,
+        backgroundImage: sodaAshGenerated,
         icon: <Layers className="w-6 h-6" />,
         slug: 'soda-ash-textile',
         category: 'Textile Industry Chemicals',

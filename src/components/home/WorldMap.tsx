@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 import * as d3 from "d3"
 
 interface Connection {
@@ -62,8 +62,8 @@ export default function WorldMap({
 }: WorldMapProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const animationRef = useRef<number>(0);
+    const [landData, setLandData] = useState<any>(null);
     const [hoveredPoint, setHoveredPoint] = useState<string | null>(null);
-    const [connectionPoints, setConnectionPoints] = useState<ConnectionPoint[]>([]);
     const [windowSize, setWindowSize] = useState({
         width: typeof window !== 'undefined' ? window.innerWidth : 1200,
         height: typeof window !== 'undefined' ? window.innerHeight : 800
@@ -139,6 +139,51 @@ export default function WorldMap({
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Load land data once
+    useEffect(() => {
+        const controller = new AbortController();
+        fetch("https://raw.githubusercontent.com/martynafford/natural-earth-geojson/master/110m/physical/ne_110m_land.json", { signal: controller.signal })
+            .then(res => res.json())
+            .then(data => setLandData(data))
+            .catch((err) => {
+                if (err.name !== 'AbortError') {
+                    console.log('Using fallback map data');
+                    setLandData({ features: [] });
+                }
+            });
+        return () => controller.abort();
+    }, []);
+
+    // Pre-calculate unique points and their connection counts
+    const pointDataList = useMemo(() => {
+        const pointMap = new Map<string, { lat: number, lng: number, label: string, connections: number }>();
+        connections.forEach(conn => {
+            [conn.start, conn.end].forEach(p => {
+                const key = `${p.lat},${p.lng}`;
+                const existing = pointMap.get(key) || { ...p, connections: 0 };
+                existing.connections++;
+                pointMap.set(key, existing);
+            });
+        });
+        return Array.from(pointMap.values());
+    }, [connections]);
+
+    // Pre-calculate arc paths (longitude/latitude steps)
+    const arcPaths = useMemo(() => {
+        return connections.map(conn => {
+            const interpolate = d3.geoInterpolate(
+                [conn.start.lng, conn.start.lat],
+                [conn.end.lng, conn.end.lat]
+            );
+            const steps = 50;
+            const points = [];
+            for (let i = 0; i <= steps; i++) {
+                points.push(interpolate(i / steps));
+            }
+            return points;
+        });
+    }, [connections]);
+
     // Helper function to convert lat/lng to screen coordinates
     const latLngToCoords = (lat: number, lng: number, projection: d3.GeoProjection) => {
         const coords = projection([lng, lat]);
@@ -148,73 +193,68 @@ export default function WorldMap({
     // Draw an arc between two points with animation
     const drawArc = (
         ctx: CanvasRenderingContext2D,
-        start: { lat: number; lng: number; label: string },
-        end: { lat: number; lng: number; label: string },
+        pathPoints: [number, number][],
         projection: d3.GeoProjection,
         lineColor: string,
         animationProgress: number
     ) => {
         const { lineWidth } = getDimensions();
-        const startCoords = latLngToCoords(start.lat, start.lng, projection);
-        const endCoords = latLngToCoords(end.lat, end.lng, projection);
-
-        if (!startCoords || !endCoords) return;
-
-        // Create a great circle interpolation
-        const interpolate = d3.geoInterpolate(
-            [start.lng, start.lat],
-            [end.lng, end.lat]
-        );
-
-        // Calculate animation offset
-        const animOffset = (animationProgress * 2) % 1;
+        const animOffset = (animationProgress * 2) % 1.2; // Slightly longer cycle for smoothness
 
         // Draw the base arc
         ctx.beginPath();
-        const steps = Math.min(50, windowSize.width < 768 ? 30 : 50); // Reduce steps on mobile
-        for (let i = 0; i <= steps; i++) {
-            const t = i / steps;
-            const [lng, lat] = interpolate(t);
+        let firstPoint = true;
+        pathPoints.forEach(([lng, lat]) => {
             const point = projection([lng, lat]);
             if (point) {
-                if (i === 0) ctx.moveTo(point[0], point[1]);
-                else ctx.lineTo(point[0], point[1]);
+                if (firstPoint) {
+                    ctx.moveTo(point[0], point[1]);
+                    firstPoint = false;
+                } else {
+                    ctx.lineTo(point[0], point[1]);
+                }
             }
-        }
+        });
 
         // Draw base line
         ctx.strokeStyle = lineColor;
         ctx.lineWidth = lineWidth;
-        ctx.globalAlpha = 0.4;
+        ctx.globalAlpha = 0.3; // More subtle
         ctx.stroke();
 
-        // Draw animated line segment
-        const animStart = Math.max(0, animOffset - 0.2);
-        const animEnd = animOffset;
+        // Draw animated pulse segment
+        const segmentLength = 0.15;
+        const animStart = Math.max(0, animOffset - segmentLength);
+        const animEnd = Math.min(1, animOffset);
 
         if (animEnd > animStart) {
             ctx.beginPath();
-            const animSteps = Math.floor((animEnd - animStart) * steps);
-            for (let i = 0; i <= animSteps; i++) {
-                const t = animStart + (i / animSteps) * (animEnd - animStart);
-                const [lng, lat] = interpolate(t);
+            const startIndex = Math.floor(animStart * (pathPoints.length - 1));
+            const endIndex = Math.ceil(animEnd * (pathPoints.length - 1));
+            
+            let pulseFirstPoint = true;
+            for (let i = startIndex; i <= endIndex; i++) {
+                const [lng, lat] = pathPoints[i];
                 const point = projection([lng, lat]);
                 if (point) {
-                    if (i === 0) ctx.moveTo(point[0], point[1]);
-                    else ctx.lineTo(point[0], point[1]);
+                    if (pulseFirstPoint) {
+                        ctx.moveTo(point[0], point[1]);
+                        pulseFirstPoint = false;
+                    } else {
+                        ctx.lineTo(point[0], point[1]);
+                    }
                 }
             }
 
-            // Animated line segment
+            // Animated segment glow
             ctx.strokeStyle = '#ffffff';
             ctx.lineWidth = lineWidth + 1;
-            ctx.globalAlpha = 1;
+            ctx.globalAlpha = 0.8;
             ctx.stroke();
 
-            // Add glow to animated segment
             ctx.strokeStyle = lineColor;
-            ctx.lineWidth = lineWidth + 2;
-            ctx.globalAlpha = 0.8;
+            ctx.lineWidth = lineWidth + 3;
+            ctx.globalAlpha = 0.4;
             ctx.stroke();
         }
 
@@ -225,62 +265,41 @@ export default function WorldMap({
     const drawConnectionPoints = (
         ctx: CanvasRenderingContext2D,
         projection: d3.GeoProjection,
-        animationProgress: number
+        pointsData: any[]
     ) => {
         const { fontSize, pointRadius } = getDimensions();
-        const points: ConnectionPoint[] = [];
+        const screenPoints: ConnectionPoint[] = [];
 
-        // Collect all unique points with their connection counts
-        const pointMap = new Map<string, { coords: { x: number; y: number }, label: string, connections: number }>();
+        pointsData.forEach((point) => {
+            const coords = projection([point.lng, point.lat]);
+            if (!coords) return;
 
-        connections.forEach(conn => {
-            const startCoords = latLngToCoords(conn.start.lat, conn.start.lng, projection);
-            const endCoords = latLngToCoords(conn.end.lat, conn.end.lng, projection);
+            const x = coords[0];
+            const y = coords[1];
 
-            if (startCoords) {
-                const key = `${conn.start.lat},${conn.start.lng}`;
-                const existing = pointMap.get(key) || {
-                    coords: startCoords,
-                    label: conn.start.label,
-                    connections: 0
-                };
-                existing.connections++;
-                pointMap.set(key, existing);
-            }
+            // Check if point is on the visible side of the globe
+            const distance = d3.geoDistance([point.lng, point.lat], projection.invert!([windowSize.width / 2, getDimensions().canvasHeight / 2]) as [number, number]);
+            if (distance > Math.PI / 2) return;
 
-            if (endCoords) {
-                const key = `${conn.end.lat},${conn.end.lng}`;
-                const existing = pointMap.get(key) || {
-                    coords: endCoords,
-                    label: conn.end.label,
-                    connections: 0
-                };
-                existing.connections++;
-                pointMap.set(key, existing);
-            }
-        });
-
-        // Draw each point
-        pointMap.forEach((point) => {
             const isHovered = hoveredPoint === point.label;
             const pulse = Math.sin(Date.now() * 0.005) * 0.5 + 0.5;
             const scaleFactor = windowSize.width < 768 ? 0.8 : 1;
 
-            // Draw connection lines from point
+            // Draw connection halo
             ctx.beginPath();
-            ctx.arc(point.coords.x, point.coords.y, (10 + point.connections * 2) * scaleFactor, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(59, 130, 246, ${0.1 + pulse * 0.1})`;
+            ctx.arc(x, y, (10 + point.connections * 2) * scaleFactor, 0, Math.PI * 2);
+            ctx.fillStyle = isHovered ? `rgba(59, 130, 246, ${0.2 + pulse * 0.2})` : `rgba(59, 130, 246, ${0.05 + pulse * 0.05})`;
             ctx.fill();
 
             // Outer ring
             ctx.beginPath();
-            ctx.arc(point.coords.x, point.coords.y, (6 + point.connections) * scaleFactor, 0, Math.PI * 2);
+            ctx.arc(x, y, (6 + point.connections) * scaleFactor, 0, Math.PI * 2);
             ctx.fillStyle = isHovered ? '#1e40af' : lineColor;
             ctx.fill();
 
             // Inner dot
             ctx.beginPath();
-            ctx.arc(point.coords.x, point.coords.y, pointRadius * scaleFactor, 0, Math.PI * 2);
+            ctx.arc(x, y, pointRadius * scaleFactor, 0, Math.PI * 2);
             ctx.fillStyle = isHovered ? '#ffffff' : '#f8fafc';
             ctx.fill();
 
@@ -288,7 +307,7 @@ export default function WorldMap({
             if (point.connections > 1) {
                 const badgeSize = 6 * scaleFactor;
                 ctx.beginPath();
-                ctx.arc(point.coords.x + badgeSize, point.coords.y - badgeSize, badgeSize, 0, Math.PI * 2);
+                ctx.arc(x + badgeSize, y - badgeSize, badgeSize, 0, Math.PI * 2);
                 ctx.fillStyle = '#ef4444';
                 ctx.fill();
 
@@ -296,29 +315,28 @@ export default function WorldMap({
                 ctx.font = `bold ${fontSize.connectionCount}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(point.connections.toString(), point.coords.x + badgeSize, point.coords.y - badgeSize);
+                ctx.fillText(point.connections.toString(), x + badgeSize, y - badgeSize);
             }
 
-            // Country label - only show on desktop or when hovered on mobile
+            // Country label
             const shouldShowLabel = windowSize.width >= 768 || isHovered;
             if (shouldShowLabel) {
                 ctx.fillStyle = isHovered ? '#ffffff' : '#d1d5db';
                 ctx.font = isHovered ? `bold ${fontSize.countryLabel + 1}px Arial` : `${fontSize.countryLabel}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'top';
-                ctx.fillText(point.label, point.coords.x, point.coords.y + 15 * scaleFactor);
+                ctx.fillText(point.label, x, y + 15 * scaleFactor);
             }
 
-            points.push({
-                x: point.coords.x,
-                y: point.coords.y,
+            screenPoints.push({
+                x,
+                y,
                 label: point.label,
                 connections: point.connections
             });
         });
 
-        setConnectionPoints(points);
-        return points;
+        return screenPoints;
     };
 
     // Check if point is hovered
@@ -337,7 +355,7 @@ export default function WorldMap({
 
     useEffect(() => {
         const canvas = canvasRef.current
-        if (!canvas) return
+        if (!canvas || !landData) return
 
         const ctx = canvas.getContext("2d")
         if (!ctx) return
@@ -361,16 +379,18 @@ export default function WorldMap({
 
         const path = d3.geoPath(projection).context(ctx)
 
-        let land: any
         let rotation: [number, number, number] = [0, -15, 0]
         let isAutoRotating = true
-        const rotationSpeed = windowSize.width < 768 ? 0.04 : 0.08 // Slower on mobile
+        let rotationTimeout: any = null;
+        const rotationSpeed = windowSize.width < 768 ? 0.04 : 0.08
         let animationProgress = 0
+        let currentConnectionPoints: ConnectionPoint[] = [];
 
         const draw = () => {
+            if (!ctx) return;
             ctx.clearRect(0, 0, width, height)
 
-            // 🌊 Ocean with gradient
+            // Ocean
             const gradient = ctx.createRadialGradient(
                 width / 2, height / 2, radius * 0.3,
                 width / 2, height / 2, radius
@@ -383,18 +403,16 @@ export default function WorldMap({
             ctx.fillStyle = gradient;
             ctx.fill();
 
-            // 🌐 Border
+            // Border
             ctx.beginPath();
             ctx.arc(width / 2, height / 2, projection.scale(), 0, Math.PI * 2);
             ctx.strokeStyle = '#1e40af';
             ctx.lineWidth = 1.5;
             ctx.stroke();
 
-            if (!land) return
-
-            // 🌍 Grid - only show on larger screens
+            // Grid
             if (windowSize.width >= 768) {
-                ctx.globalAlpha = 0.2;
+                ctx.globalAlpha = 0.1;
                 ctx.beginPath();
                 path(d3.geoGraticule10());
                 ctx.strokeStyle = '#60a5fa';
@@ -403,9 +421,9 @@ export default function WorldMap({
                 ctx.globalAlpha = 1;
             }
 
-            // 🌎 Land with gradient
+            // Land
             ctx.beginPath();
-            land.features.forEach((f: any) => path(f));
+            landData.features.forEach((f: any) => path(f));
             const landGradient = ctx.createLinearGradient(0, 0, width, height);
             landGradient.addColorStop(0, '#1e293b');
             landGradient.addColorStop(1, '#334155');
@@ -415,114 +433,70 @@ export default function WorldMap({
             ctx.lineWidth = windowSize.width < 768 ? 0.5 : 0.8;
             ctx.stroke();
 
-            // Draw connection lines
-            connections.forEach(connection => {
-                drawArc(ctx, connection.start, connection.end, projection, lineColor, animationProgress);
+            // Connection lines
+            arcPaths.forEach(pathPoints => {
+                drawArc(ctx, pathPoints as [number, number][], projection, lineColor, animationProgress);
             });
 
-            // Draw connection points and get their positions
-            const points = drawConnectionPoints(ctx, projection, animationProgress);
-
-            // Handle mouse hover
-            canvas.onmousemove = (e) => {
-                const rect = canvas.getBoundingClientRect();
-                const mouseX = e.clientX - rect.left;
-                const mouseY = e.clientY - rect.top;
-                const hovered = checkHover(mouseX, mouseY, points);
-                setHoveredPoint(hovered);
-            };
-
-            canvas.onmouseleave = () => {
-                setHoveredPoint(null);
-            };
-
-            // Handle touch events for mobile
-            canvas.ontouchstart = (e) => {
-                e.preventDefault();
-                const rect = canvas.getBoundingClientRect();
-                const touch = e.touches[0];
-                const touchX = touch.clientX - rect.left;
-                const touchY = touch.clientY - rect.top;
-                const hovered = checkHover(touchX, touchY, points);
-                setHoveredPoint(hovered);
-            };
-
-            canvas.ontouchmove = (e) => {
-                e.preventDefault();
-                const rect = canvas.getBoundingClientRect();
-                const touch = e.touches[0];
-                const touchX = touch.clientX - rect.left;
-                const touchY = touch.clientY - rect.top;
-                const hovered = checkHover(touchX, touchY, points);
-                setHoveredPoint(hovered);
-            };
-
-            canvas.ontouchend = () => {
-                setTimeout(() => setHoveredPoint(null), 2000); // Keep info for 2 seconds
-            };
-
-            animationProgress += 0.01;
+            // Points
+            currentConnectionPoints = drawConnectionPoints(ctx, projection, pointDataList);
+            
+            animationProgress += 0.005;
             if (animationProgress > 1) animationProgress = 0;
         }
 
-        fetch(
-            "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/master/110m/physical/ne_110m_land.json"
-        )
-            .then(res => res.json())
-            .then(data => {
-                land = data
-                draw()
-            })
-            .catch(() => {
-                // Fallback if fetch fails
-                console.log('Using fallback map data');
-                land = { features: [] };
-                draw();
-            })
+        // Mouse handlers outside of continuous draw loop if possible, but we need currentConnectionPoints
+        const handleInteraction = (x: number, y: number) => {
+            const hovered = checkHover(x, y, currentConnectionPoints);
+            setHoveredPoint(prev => {
+                if (prev !== hovered) return hovered;
+                return prev;
+            });
+        };
 
-        // Animation loop
+        canvas.onmousemove = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            handleInteraction(e.clientX - rect.left, e.clientY - rect.top);
+        };
+
+        canvas.onmouseleave = () => {
+            setHoveredPoint(null);
+        };
+
+        canvas.ontouchstart = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            handleInteraction(touch.clientX - rect.left, touch.clientY - rect.top);
+        };
+
         const animate = () => {
             if (isAutoRotating) {
                 rotation[0] += rotationSpeed;
                 projection.rotate(rotation);
-                draw();
-            } else {
-                draw();
             }
+            draw();
             animationRef.current = requestAnimationFrame(animate);
         }
 
         animate();
 
-        let lastX = 0;
-        let lastY = 0;
-        const sensitivity = windowSize.width < 768 ? 0.5 : 0.3; // More sensitive on mobile
-
-        // Drag interaction
+        // Interaction
         const drag = d3.drag<HTMLCanvasElement, unknown>()
             .on("start", (event) => {
                 isAutoRotating = false;
-                lastX = event.x;
-                lastY = event.y;
+                if (rotationTimeout) clearTimeout(rotationTimeout);
                 canvas.style.cursor = 'grabbing';
             })
             .on("drag", (event) => {
-                const dx = event.x - lastX;
-                const dy = event.y - lastY;
-
-                rotation[0] += dx * sensitivity;
-                rotation[1] -= dy * sensitivity;
+                const sensitivity = windowSize.width < 768 ? 0.4 : 0.3;
+                rotation[0] += event.dx * sensitivity;
+                rotation[1] -= event.dy * sensitivity;
                 rotation[1] = Math.max(-90, Math.min(90, rotation[1]));
-
                 projection.rotate(rotation);
-                draw();
-
-                lastX = event.x;
-                lastY = event.y;
             })
             .on("end", () => {
                 canvas.style.cursor = 'grab';
-                setTimeout(() => {
+                rotationTimeout = setTimeout(() => {
                     isAutoRotating = true;
                 }, 3000);
             });
@@ -534,29 +508,18 @@ export default function WorldMap({
             e.preventDefault();
             const delta = e.deltaY > 0 ? 0.95 : 1.05;
             const minScale = windowSize.width < 768 ? radius * 0.7 : radius * 0.5;
-            const maxScale = windowSize.width < 768 ? radius * 1.5 : radius * 2;
+            const maxScale = windowSize.width < 768 ? radius * 1.5 : radius * 3;
             projection.scale(Math.max(minScale, Math.min(maxScale, projection.scale() * delta)));
-            draw();
         };
 
-        canvas.addEventListener('wheel', handleWheel);
-
-        const handleResize = () => {
-            if (canvas) {
-                const newWidth = canvas.offsetWidth;
-                projection.translate([newWidth / 2, getDimensions().canvasHeight / 2]);
-                draw();
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
+        canvas.addEventListener('wheel', handleWheel, { passive: false });
 
         return () => {
             cancelAnimationFrame(animationRef.current);
-            window.removeEventListener('resize', handleResize);
+            if (rotationTimeout) clearTimeout(rotationTimeout);
             canvas.removeEventListener('wheel', handleWheel);
         }
-    }, [connections, lineColor, hoveredPoint, windowSize])
+    }, [landData, connections, lineColor, windowSize, pointDataList])
 
     // Get unique countries from connections
     const getAllCountries = () => {
@@ -655,7 +618,7 @@ export default function WorldMap({
                     {[
                         { label: 'Active Routes', value: `${connections.length * 2}+`, sub: 'Direct global links', color: 'text-accent' },
                         { label: 'Countries Covered', value: countries.length, sub: 'Global footprint', color: 'text-foreground' },
-                        { label: 'Max Connections', value: Math.max(...connectionPoints.map(p => p.connections), 0), sub: 'Major hub capacity', color: 'text-foreground' }
+                        { label: 'Max Connections', value: Math.max(...pointDataList.map(p => p.connections), 0), sub: 'Major hub capacity', color: 'text-foreground' }
                     ].map((stat, i) => (
                         <motion.div
                             key={i}
