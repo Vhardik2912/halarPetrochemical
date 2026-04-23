@@ -1,6 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import { ChemicalProduct } from '../../../msds/msds';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.webp';
 
 const styles = StyleSheet.create({
   page: {

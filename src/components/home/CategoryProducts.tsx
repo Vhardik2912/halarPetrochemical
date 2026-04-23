@@ -12,16 +12,16 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 
-import petrochemicalsImg from "@/assets/products/categories/petrochemicals.png";
-import solventsImg from "@/assets/products/categories/solvents.png";
-import rawMaterialsImg from "@/assets/products/categories/raw_materials.png";
-import waterTreatmentImg from "@/assets/products/categories/water_treatment.png";
-import cosmeticsImg from "@/assets/products/categories/cosmetics.png";
-import paintCoatingsImg from "@/assets/products/categories/paint_coatings.png";
-import miningImg from "@/assets/products/categories/mining.png";
-import textileImg from "@/assets/products/categories/textile.png";
-import foamIndustryImg from "@/assets/products/categories/foam_industry.png";
-import printingInkImg from "@/assets/products/categories/printing_ink.png";
+import petrochemicalsImg from "@/assets/products/categories/petrochemicals.webp";
+import solventsImg from "@/assets/products/categories/solvents.webp";
+import rawMaterialsImg from "@/assets/products/categories/raw_materials.webp";
+import waterTreatmentImg from "@/assets/products/categories/water_treatment.webp";
+import cosmeticsImg from "@/assets/products/categories/cosmetics.webp";
+import paintCoatingsImg from "@/assets/products/categories/paint_coatings.webp";
+import miningImg from "@/assets/products/categories/mining.webp";
+import textileImg from "@/assets/products/categories/textile.webp";
+import foamIndustryImg from "@/assets/products/categories/foam_industry.webp";
+import printingInkImg from "@/assets/products/categories/printing_ink.webp";
 
 const categoryImageMap: Record<string, string> = {
     "Petrochemicals": petrochemicalsImg,

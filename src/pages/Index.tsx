@@ -25,8 +25,8 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 // Assets
 import heroVideo from '@/assets/mainvideo.mp4';
 import portraitVideo from '@/assets/mainvideo-potrait.mp4';
-import Aboutimage from '@/assets/image.png';
-import heroRefinery from "../assets/hero-refinery.jpg";
+import Aboutimage from '@/assets/image.webp';
+import heroRefinery from "../assets/hero-refinery.webp";
 import { products } from '@/data/products';
 
 const features = [

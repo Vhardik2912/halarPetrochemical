@@ -13,7 +13,7 @@ const SEO = ({
   title,
   description,
   canonical,
-  ogImage = '/og-image.png',
+  ogImage = '/og-image.webp',
   ogType = 'website',
   keywords,
 }: SEOProps) => {

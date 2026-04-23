@@ -47,10 +47,6 @@ const ProductCard = ({ name, description, href, icon, index, backgroundImage, ca
         <div className="p-8 pb-10 flex-1 flex flex-col relative">
           <div className="space-y-4 mb-6">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-px bg-accent" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">
-                {category || "INDUSTRIAL SOLUTION"}
-              </span>
             </div>
 
             <h3 className="text-3xl font-black text-primary leading-none uppercase tracking-tighter">

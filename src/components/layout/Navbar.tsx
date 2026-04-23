@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ArrowRight, Droplets, Fuel } from 'lucide-react';
-import logo from '@/assets/logo.png';
-import fuelOilImg from '@/assets/products/fuel-oil.png';
-import naphthaImg from '@/assets/products/naphtha.png';
+import logo from '@/assets/logo.webp';
+import fuelOilImg from '@/assets/products/fuel-oil.webp';
+import naphthaImg from '@/assets/products/naphtha.webp';
 
 // Define the navigation structure.
 const navigation = [

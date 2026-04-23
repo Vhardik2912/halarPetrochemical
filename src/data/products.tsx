@@ -22,75 +22,75 @@ import {
 } from 'lucide-react';
 
 // Category Images
-import Acetone from "@/assets/products/categories/AcetoneSolvents.jpg";
-import LABSA96 from "@/assets/products/categories/LABSA96.png";
-import SLES70 from "@/assets/products/categories/SLES70.png"
-import Casusticsoda from "@/assets/products/categories/CausticSodaFlakes.png"
-import sodaashlight from "@/assets/products/categories/SodaAshLight.png"
-import Xylene from "@/assets/products/categories/Xylene.png";
-import Toluene from "@/assets/products/categories/Toluene.png";
-import MethylEthylKetone from "@/assets/products/categories/MethylEthylKetone.png";
-import ButylAcetate from "@/assets/products/categories/ButylAcetate.jpg";
-import distillateMarineOil from "@/assets/products/categories/image copy.png";
-import whiteoilimge from "@/assets/products/categories/WhiteOilPetrochemicals.jpg";
-import rubberOilImg from "@/assets/products/categories/RubberProcessOil.jpg";
-import baseoilImg from "@/assets/products/categories/baseoil.jpg";
-import petrochemicalsImg from "@/assets/products/categories/petrochemicals.png";
-import solventsImg from "@/assets/products/categories/solvents.png";
-import Ethylacetate from "@/assets/products/categories/Ethylacetate.jpg";
-import rawMaterialsImg from "@/assets/products/categories/raw_materials.png";
-import AluminumSulphate from "@/assets/products/categories/AluminumSulphate.png"
-import waterTreatmentImg from "@/assets/products/categories/water_treatment.png";
-import cosmeticsImg from "@/assets/products/categories/cosmetics.png";
-import Glycerine from "@/assets/products/categories/Glycerine.jpg"
-import paintCoatingsImg from "@/assets/products/categories/paint_coatings.png";
-import miningImg from "@/assets/products/categories/mining.png";
-import textileImg from "@/assets/products/categories/textile.png";
-import foamIndustryImg from "@/assets/products/categories/foam_industry.png";
-import printingInkImg from "@/assets/products/categories/printing_ink.png";
-import TitaniumDioxide from "@/assets/products/categories/TitaniumDioxide.png"
-import SodiumCyanide from "@/assets/products/categories/SodiumCyanide.png"
-import HydrogenPeroxide from "@/assets/products/categories/HydrogenPeroxide.png"
-import TDI from "@/assets/products/categories/TDI.jpg"
-import IsopropylAlcohol from "@/assets/products/categories/IsopropylAlcohol.png"
-import FerricChloride from "@/assets/products/categories/FerricChloride.png"
-import CalciumHypochlorite from "@/assets/products/categories/CalciumHypochlorite.png"
-import StearicAcid from "@/assets/products/categories/StearicAcid.png"
-import ActivatedCarbon from "@/assets/products/categories/ActivatedCarbon.png"
-import HydrochloricAcid from "@/assets/products/categories/HydrochloricAcid.png"
-import SulphuricAcid from "@/assets/products/categories/SulphuricAcid.png"
-import SodiumSilicate from "@/assets/products/categories/SodiumSilicate.png"
-import SodiumNitrate from "@/assets/products/categories/SodiumNitrate.png"
-import SodiumSulphate from "@/assets/products/categories/SodiumSulphate.png"
+import Acetone from "@/assets/products/categories/AcetoneSolvents.webp";
+import LABSA96 from "@/assets/products/categories/LABSA96.webp";
+import SLES70 from "@/assets/products/categories/SLES70.webp"
+import Casusticsoda from "@/assets/products/categories/CausticSodaFlakes.webp"
+import sodaashlight from "@/assets/products/categories/SodaAshLight.webp"
+import Xylene from "@/assets/products/categories/Xylene.webp";
+import Toluene from "@/assets/products/categories/Toluene.webp";
+import MethylEthylKetone from "@/assets/products/categories/MethylEthylKetone.webp";
+import ButylAcetate from "@/assets/products/categories/ButylAcetate.webp";
+import distillateMarineOil from "@/assets/products/categories/image copy.webp";
+import whiteoilimge from "@/assets/products/categories/WhiteOilPetrochemicals.webp";
+import rubberOilImg from "@/assets/products/categories/RubberProcessOil.webp";
+import baseoilImg from "@/assets/products/categories/baseoil.webp";
+import petrochemicalsImg from "@/assets/products/categories/petrochemicals.webp";
+import solventsImg from "@/assets/products/categories/solvents.webp";
+import Ethylacetate from "@/assets/products/categories/Ethylacetate.webp";
+import rawMaterialsImg from "@/assets/products/categories/raw_materials.webp";
+import AluminumSulphate from "@/assets/products/categories/AluminumSulphate.webp"
+import waterTreatmentImg from "@/assets/products/categories/water_treatment.webp";
+import cosmeticsImg from "@/assets/products/categories/cosmetics.webp";
+import Glycerine from "@/assets/products/categories/Glycerine.webp"
+import paintCoatingsImg from "@/assets/products/categories/paint_coatings.webp";
+import miningImg from "@/assets/products/categories/mining.webp";
+import textileImg from "@/assets/products/categories/textile.webp";
+import foamIndustryImg from "@/assets/products/categories/foam_industry.webp";
+import printingInkImg from "@/assets/products/categories/printing_ink.webp";
+import TitaniumDioxide from "@/assets/products/categories/TitaniumDioxide.webp"
+import SodiumCyanide from "@/assets/products/categories/SodiumCyanide.webp"
+import HydrogenPeroxide from "@/assets/products/categories/HydrogenPeroxide.webp"
+import TDI from "@/assets/products/categories/TDI.webp"
+import IsopropylAlcohol from "@/assets/products/categories/IsopropylAlcohol.webp"
+import FerricChloride from "@/assets/products/categories/FerricChloride.webp"
+import CalciumHypochlorite from "@/assets/products/categories/CalciumHypochlorite.webp"
+import StearicAcid from "@/assets/products/categories/StearicAcid.webp"
+import ActivatedCarbon from "@/assets/products/categories/ActivatedCarbon.webp"
+import HydrochloricAcid from "@/assets/products/categories/HydrochloricAcid.webp"
+import SulphuricAcid from "@/assets/products/categories/SulphuricAcid.webp"
+import SodiumSilicate from "@/assets/products/categories/SodiumSilicate.webp"
+import SodiumNitrate from "@/assets/products/categories/SodiumNitrate.webp"
+import SodiumSulphate from "@/assets/products/categories/SodiumSulphate.webp"
 // Specific Product Images (Existing)
-import fuelOilImg from "@/assets/products/categories/Fule.jpg";
-import gasOilImg from "@/assets/products/categories/gasoli.jpg";
-import naphthaImg from "@/assets/products/categories/naphtha.jpg";
-// import rubberOilImg from "@/assets/products/fuelproduct.png";
-import whiteSpiritImg from "@/assets/products/white-spirit.png";
-import glycolsImg from "@/assets/products/glycols.png";
+import fuelOilImg from "@/assets/products/categories/Fule.webp";
+import gasOilImg from "@/assets/products/categories/gasoli.webp";
+import naphthaImg from "@/assets/products/categories/naphtha.webp";
+// import rubberOilImg from "@/assets/products/fuelproduct.webp";
+import whiteSpiritImg from "@/assets/products/white-spirit.webp";
+import glycolsImg from "@/assets/products/glycols.webp";
 
 // Generated Images
-import butylGlycolGenerated from "@/assets/products/generated/butyl_glycol_egbe.png";
-import sodiumHypochloriteGenerated from "@/assets/products/generated/sodium_hypochlorite.png";
-import pacGenerated from "@/assets/products/generated/polyaluminium_chloride_pac.png";
-import propyleneGlycolCosmeticGenerated from "@/assets/products/generated/propylene_glycol_cosmetic.png";
-import calciumCarbonateIndustrialGenerated from "@/assets/products/generated/calcium_carbonate_industrial.png";
-import zincOxideGenerated from "@/assets/products/generated/zinc_oxide.png";
-import polyetherPolyolsGenerated from "@/assets/products/generated/polyether_polyols.png";
-import siliconeSurfactantsGenerated from "@/assets/products/generated/silicone_surfactants.png";
-import mdiFoamGenerated from "@/assets/products/generated/mdi_foam.png";
-import nitrocelluloseInkGenerated from "@/assets/products/generated/nitrocellulose_ink.png";
-import printingResinsPigmentsGenerated from "@/assets/products/generated/printing_resins_pigments.png";
-import aceticAcidTextileGenerated from "@/assets/products/generated/acetic_acid_textile.png";
-import mekPaintGenerated from "@/assets/products/generated/mek_paint.png";
-import mekInkGenerated from "@/assets/products/generated/mek_ink.png";
-import tolueneInkGenerated from "@/assets/products/generated/toluene_ink.png";
-import sodaAshGenerated from "@/assets/products/generated/soda_ash.png";
-import sodiumHydrosulphiteGenerated from "@/assets/products/generated/sodium_hydrosulphite.png";
+import butylGlycolGenerated from "@/assets/products/generated/butyl_glycol_egbe.webp";
+import sodiumHypochloriteGenerated from "@/assets/products/generated/sodium_hypochlorite.webp";
+import pacGenerated from "@/assets/products/generated/polyaluminium_chloride_pac.webp";
+import propyleneGlycolCosmeticGenerated from "@/assets/products/generated/propylene_glycol_cosmetic.webp";
+import calciumCarbonateIndustrialGenerated from "@/assets/products/generated/calcium_carbonate_industrial.webp";
+import zincOxideGenerated from "@/assets/products/generated/zinc_oxide.webp";
+import polyetherPolyolsGenerated from "@/assets/products/generated/polyether_polyols.webp";
+import siliconeSurfactantsGenerated from "@/assets/products/generated/silicone_surfactants.webp";
+import mdiFoamGenerated from "@/assets/products/generated/mdi_foam.webp";
+import nitrocelluloseInkGenerated from "@/assets/products/generated/nitrocellulose_ink.webp";
+import printingResinsPigmentsGenerated from "@/assets/products/generated/printing_resins_pigments.webp";
+import aceticAcidTextileGenerated from "@/assets/products/generated/acetic_acid_textile.webp";
+import mekPaintGenerated from "@/assets/products/generated/mek_paint.webp";
+import mekInkGenerated from "@/assets/products/generated/mek_ink.webp";
+import tolueneInkGenerated from "@/assets/products/generated/toluene_ink.webp";
+import sodaAshGenerated from "@/assets/products/generated/soda_ash.webp";
+import sodiumHydrosulphiteGenerated from "@/assets/products/generated/sodium_hydrosulphite.webp";
 
-// import lubricantOilImg from "@/assets/products/lubricant-oil.png";
-// import paraffinOilImg from "@/assets/products/Paraffin Oil.png";
+// import lubricantOilImg from "@/assets/products/lubricant-oil.webp";
+// import paraffinOilImg from "@/assets/products/Paraffin Oil.webp";
 
 export interface Product {
     name: string;

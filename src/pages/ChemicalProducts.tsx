@@ -5,7 +5,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import ProductCard from '@/components/home/ProductCard';
 import SplitText from '@/components/ui/SplitText';
-import heroRefinery from "../assets/hero-refinery.jpg";
+import heroRefinery from "../assets/hero-refinery.webp";
 import { products } from '@/data/products';
 import { ArrowRight, Beaker, Layers, ShieldCheck } from 'lucide-react';
 

@@ -13,7 +13,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { createContact } from '../../api';
-import heroRefinery from "../assets/hero-refinery.jpg";
+import heroRefinery from "../assets/hero-refinery.webp";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),

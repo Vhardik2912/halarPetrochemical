@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { Menu, X, ChevronDown, ArrowRight, Droplets, Fuel, Globe, Zap, Search } from 'lucide-react';
 import InlineSearch from '@/components/common/InlineSearch';
-import logo from '@/assets/logo.png';
-import fuelOilImg from '@/assets/products/oils-bg.png';
-import naphthaImg from '@/assets/products/chemicals-bg.png';
+import logo from '@/assets/logo.webp';
+import fuelOilImg from '@/assets/products/oils-bg.webp';
+import naphthaImg from '@/assets/products/chemicals-bg.webp';
 import { cn } from '@/lib/utils';
 
 const navigation = [

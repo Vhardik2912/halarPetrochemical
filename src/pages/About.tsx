@@ -10,8 +10,8 @@ import SEO from '@/components/SEO';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
-import heroRefinery from "../assets/hero-refinery.jpg";
-import placeholderAvatar from "../assets/hero-refinery.jpg";
+import heroRefinery from "../assets/hero-refinery.webp";
+import placeholderAvatar from "../assets/hero-refinery.webp";
 
 // Animation Variants
 const fadeInUp: Variants = {
