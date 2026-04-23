@@ -24,6 +24,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 
 // Assets
 import heroVideo from '@/assets/mainvideo.mp4';
+import portraitVideo from '@/assets/mainvideo-potrait.mp4';
 import Aboutimage from '@/assets/image.png';
 import heroRefinery from "../assets/hero-refinery.jpg";
 import { products } from '@/data/products';
@@ -257,7 +258,7 @@ const Index = () => {
                     <motion.video
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      src="/src/assets/mainvideo-potrait.mp4"
+                      src={portraitVideo}
                       autoPlay
                       muted
                       loop
